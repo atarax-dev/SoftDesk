@@ -27,7 +27,7 @@ class IsContribPermission(permissions.BasePermission):
     message = "Vous n'êtes pas contributeur de ce projet"
 
     def has_permission(self, request, view):
-        project_id = view.get_object().id
+        project_id = view.get_project().id
         contributors = Contributor.objects.filter(project_id=project_id)
         is_contrib = contributors.filter(user=request.user).exists()
         return is_contrib
@@ -39,7 +39,6 @@ class IsOwnerOrReadOnlyPermission(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
-
         return view.get_object().author == request.user
 
 
@@ -91,17 +90,21 @@ class ProjectRUDView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnlyPermission, IsContribPermission]
     queryset = Project.objects.all()
 
+    def get_project(self):
+        lookup_field = self.kwargs["id"]
+        return get_object_or_404(Project, id=lookup_field)
+
     def get_object(self):
         lookup_field = self.kwargs["id"]
         return get_object_or_404(Project, id=lookup_field)
 
 
-class AddUserToProjectView(generics.RetrieveAPIView):
+class AddUserToProjectView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated, IsContribPermission, IsOwnerOrReadOnlyPermission)
     serializer_class = ContributorSerializer
     queryset = Contributor.objects.all()
 
-    def get_object(self):
+    def get_project(self):
         lookup_field = self.kwargs["id"]
         return get_object_or_404(Project, id=lookup_field)
 
@@ -152,7 +155,7 @@ class IssueListCreateView(generics.ListCreateAPIView):
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated, IsContribPermission]
 
-    def get_object(self):
+    def get_project(self):
         lookup_field = self.kwargs["id"]
         return get_object_or_404(Project, id=lookup_field)
 
@@ -174,8 +177,12 @@ class IssueListCreateView(generics.ListCreateAPIView):
 
 class IssueRUDView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = IssueSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnlyPermission]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnlyPermission, IsContribPermission]
     queryset = Issue.objects.all()
+
+    def get_project(self):
+        lookup_field = self.kwargs["id"]
+        return get_object_or_404(Project, id=lookup_field)
 
     def get_object(self):
         lookup_field = self.kwargs["id"]
@@ -186,13 +193,23 @@ class IssueRUDView(generics.RetrieveUpdateDestroyAPIView):
         except Issue.DoesNotExist:
             raise Http404
 
+    def put(self, request, *args, **kwargs):
+        lookup_field = self.kwargs["id"]
+        serializer = IssueSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.data['project_id'] = lookup_field
+            serializer.data['author'] = request.user
+            return self.update(serializer)
+        return Response(serializer.errors)
+
 
 class CommentListCreateView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated, IsContribPermission]
 
-    def get_object(self):
+    def get_project(self):
         lookup_field = self.kwargs["id"]
         return get_object_or_404(Project, id=lookup_field)
 
@@ -207,15 +224,19 @@ class CommentListCreateView(generics.ListCreateAPIView):
         serializer = CommentSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save(issue_id=lookup_field)
+            serializer.save(issue_id=lookup_field, author=request.user)
             return Response(serializer.data)
         return Response(serializer.errors)
 
 
 class CommentRUDView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnlyPermission]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnlyPermission, IsContribPermission]
     queryset = Comment.objects.all()
+
+    def get_project(self):
+        lookup_field = self.kwargs["id"]
+        return get_object_or_404(Project, id=lookup_field)
 
     def get_object(self):
 
@@ -224,3 +245,13 @@ class CommentRUDView(generics.RetrieveUpdateDestroyAPIView):
             return Comment.objects.get(id=lookup_field)
         except Comment.DoesNotExist:
             raise Http404
+
+    def put(self, request, *args, **kwargs):
+        lookup_field = self.kwargs["issue_id"]
+        serializer = CommentSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.data['issue_id'] = lookup_field
+            serializer.data['author'] = request.user
+            return self.update(serializer)
+        return Response(serializer.errors)
