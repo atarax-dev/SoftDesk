@@ -23,7 +23,7 @@ class Contributor(models.Model):
         unique_together = ('user', 'project',)
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
 
 class Issue(models.Model):
