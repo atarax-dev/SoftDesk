@@ -75,10 +75,10 @@ class ProjectListCreateView(generics.ListCreateAPIView):
             serializer.save(author=request.user)
             next_id_created = Project.objects.last().id
             contributor_data = {'permissions': 'Créateur', 'role': 'Responsable',
-                                'user': request.user.id, 'project': next_id_created}
+                                'user': request.user.id, 'project_id': next_id_created}
             contributor = ContributorSerializer(data=contributor_data)
             if contributor.is_valid():
-                contributor.save(user=request.user)
+                contributor.save(user=request.user, project_id=next_id_created)
                 return Response(serializer.data)
             return Response(contributor.errors)
 
