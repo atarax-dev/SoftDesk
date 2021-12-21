@@ -30,7 +30,7 @@ urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api-auth/', include('rest_framework.urls')),
-    path('register/', RegisterView.as_view(), name='auth_register'),
+    path('signup/', RegisterView.as_view(), name='auth_register'),
     path('projects/', ProjectListCreateView.as_view(), name='project_list_create'),
     path('projects/<int:id>/', ProjectRUDView.as_view(), name='project_RUD'),
     path('projects/<int:id>/users/', AddUserToProjectView.as_view(), name='contributor_project'),
