@@ -5,7 +5,8 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=5000)
-    type = models.CharField(max_length=50)
+    type = models.CharField(max_length=12, choices=[("Back-end", "Back-end"), ("Front-end", "Front-end"),
+                                                    ("iOS", "iOS"), ("Android", "Android")])
     author = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -15,7 +16,7 @@ class Project(models.Model):
 class Contributor(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     project = models.ForeignKey(to=Project, on_delete=models.CASCADE, blank=True)
-    permissions = models.CharField(max_length=2, choices=[("a", "a"), ("c", "c")])
+    permissions = models.CharField(max_length=12, choices=[("Créateur", "Créateur"), ("Contributeur", "Contributeur")])
     role = models.CharField(max_length=50, blank=True)
 
     class Meta:
@@ -28,12 +29,16 @@ class Contributor(models.Model):
 class Issue(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=5000)
-    tag = models.CharField(max_length=50)
-    priority = models.CharField(max_length=50)
+    tag = models.CharField(max_length=12, choices=[("BUG", "BUG"), ("AMELIORATION", "AMELIORATION"),
+                                                        ("TACHE", "TACHE")])
+    priority = models.CharField(max_length=7, choices=[("FAIBLE", "FAIBLE"), ("MOYENNE", "MOYENNE"),
+                                                        ("ELEVEE", "ELEVEE")])
     project = models.ForeignKey(to=Project, on_delete=models.CASCADE)
-    status = models.CharField(max_length=50)
+    status = models.CharField(max_length=8, choices=[("A faire", "A faire"), ("En cours", "En cours"),
+                                                        ("Terminé", "Terminé")])
     author = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='author')
-    assignee = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='assignee')
+    assignee = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                 related_name='assignee', default=author)
     created_time = models.DateTimeField(auto_now=True)
 
     def __str__(self):

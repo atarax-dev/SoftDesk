@@ -74,7 +74,7 @@ class ProjectListCreateView(generics.ListCreateAPIView):
         if serializer.is_valid():
             serializer.save(author=request.user)
             next_id_created = Project.objects.last().id
-            contributor_data = {'permissions': 'a', 'role': 'createur',
+            contributor_data = {'permissions': 'Créateur', 'role': 'Responsable',
                                 'user': request.user.id, 'project': next_id_created}
             contributor = ContributorSerializer(data=contributor_data)
             if contributor.is_valid():
@@ -103,6 +103,10 @@ class AddUserToProjectView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated, IsContribPermission, IsOwnerOrReadOnlyPermission)
     serializer_class = ContributorSerializer
     queryset = Contributor.objects.all()
+
+    def get_object(self):
+        lookup_field = self.kwargs["id"]
+        return get_object_or_404(Project, id=lookup_field)
 
     def get_project(self):
         lookup_field = self.kwargs["id"]
