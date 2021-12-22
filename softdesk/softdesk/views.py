@@ -79,10 +79,10 @@ class ProjectListCreateView(generics.ListCreateAPIView):
             contributor = ContributorSerializer(data=contributor_data)
             if contributor.is_valid():
                 contributor.save(user=request.user, project_id=next_id_created)
-                return Response(serializer.data)
-            return Response(contributor.errors)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(contributor.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProjectRUDView(generics.RetrieveUpdateDestroyAPIView):
@@ -127,8 +127,8 @@ class AddUserToProjectView(generics.ListCreateAPIView):
 
             if serializer.is_valid():
                 serializer.save(project_id=lookup_field)
-                return Response(serializer.data)
-            return Response(serializer.errors)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except IntegrityError:
             return Response(status=status.HTTP_400_BAD_REQUEST, data="Ce contributeur existe déjà")
         # else:
@@ -175,8 +175,8 @@ class IssueListCreateView(generics.ListCreateAPIView):
 
         if serializer.is_valid():
             serializer.save(project_id=lookup_field, author=request.user)
-            return Response(serializer.data)
-        return Response(serializer.errors)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class IssueRUDView(generics.RetrieveUpdateDestroyAPIView):
@@ -205,7 +205,7 @@ class IssueRUDView(generics.RetrieveUpdateDestroyAPIView):
             serializer.data['project_id'] = lookup_field
             serializer.data['author'] = request.user
             return self.update(serializer)
-        return Response(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_304_NOT_MODIFIED)
 
 
 class CommentListCreateView(generics.ListCreateAPIView):
@@ -229,8 +229,8 @@ class CommentListCreateView(generics.ListCreateAPIView):
 
         if serializer.is_valid():
             serializer.save(issue_id=lookup_field, author=request.user)
-            return Response(serializer.data)
-        return Response(serializer.errors)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CommentRUDView(generics.RetrieveUpdateDestroyAPIView):
@@ -258,4 +258,4 @@ class CommentRUDView(generics.RetrieveUpdateDestroyAPIView):
             serializer.data['issue_id'] = lookup_field
             serializer.data['author'] = request.user
             return self.update(serializer)
-        return Response(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_304_NOT_MODIFIED)
