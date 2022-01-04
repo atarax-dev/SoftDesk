@@ -1,0 +1,2084 @@
+{
+	"info": {
+		"_postman_id": "481a8d39-1226-4e33-8e07-1cf880495515",
+		"name": "SoftDesk",
+		"description": "Cette documentation est une collection de points de terminaisons pour l'API développée dans le cadre du projet n°10 d'Open Classrooms.\n\nIl contient les points de terminaisons suivants:\n-Signup\n-Obtenir Token\n-Récupérer la liste des projets rattachés\n-Créer un projet\n-Récupérer les détails d'un projet\n-Mettre à jour un projet \n-Supprimer un projet\n-Récupérer les contributeurs d'un projet\n-Ajouter un contributeur à un projet\n-Supprimer un contributeur d'un projet\n-Récupérer la liste des problèmes d'un projet\n-Créer un problème dans un projet\n-Mettre à jour un problème dans un projet \n-Supprimer un problème dans un projet\n-Récupérer la liste des commentaires liés à un problème\n-Créer un commentaire sur un problème\n-Récupérer un commentaire\n-Modifier un commentaire\n-Supprimer un commentaire \n\nCes points de terminaisons nécessitent les permissions adéquates:\n-Vous devez être authentifié pour accéder à la lecture, création, modification ou suppression d'un contenu \n-Seul le créateur d'un projet peut le modifier ou le supprimer, lui ajouter des contributeurs ou en supprimer.\n-Seuls les contributeurs d'un projet peuvent créer des problèmes sur ces projets et des commentaires sur ces problèmes\n-Seuls les auteurs des problèmes et des commentaires peuvent les modifier ou les supprimer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/signup/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"signup",
+						""
+					]
+				},
+				"description": "Inscription de l'utilisateur\n\nRenvoie un code HTTP 2O1 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Signup JackSparrow",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"JackSparrow\" ,\r\n    \"password\": \"piratefou\" ,\r\n    \"password2\": \"piratefou\",\r\n    \"email\": \"Jack@sparrow.com\",\r\n    \"first_name\": \"Jack\" ,\r\n    \"last_name\": \"Sparrow\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/signup/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"signup",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 18:15:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "95"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"username\": \"JackSparrow\",\n    \"email\": \"Jack@sparrow.com\",\n    \"first_name\": \"Jack\",\n    \"last_name\": \"Sparrow\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtenir Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"login",
+						""
+					]
+				},
+				"description": "Permet d'obtenir le token JWT et le refresh du token\nVous devez renseigner le nom d'utilisateur et son mot de passe \nRenvoie un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Token JackSparrow",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\": \"JackSparrow\", \"password\": \"piratefou\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 18:26:03 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "483"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY0MDQ1Njc2MywiaWF0IjoxNjQwMTExMTYzLCJqdGkiOiIwMzViNDYzMDRiZWY0ZTZlYWNhNzYyZDk5MjA5MGIxNCIsInVzZXJfaWQiOjV9.oO1QIen1elgoPPxAJ4dQorHeep59dFMf2R3ofRC9qqA\",\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjgzOTYzLCJpYXQiOjE2NDAxMTExNjMsImp0aSI6ImMxNDg4MjhkZjQzMzRjNDA4YmJlMDQyZjJiMGI3MjE4IiwidXNlcl9pZCI6NX0.5zRwXoFqEOp3e6NJGMt8A3M5fAAK_eEHQktRnjxzvYw\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Récupérer la liste des projets rattachés",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						""
+					]
+				},
+				"description": "Récupérer la liste de tous les projets rattachés à l'utilisateur connecté (les projets dont il est contributeur)\nVous devez être authentifié\nRenvoie un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Projets rattachés à l'utilisateur connecté",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 19:52:45 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "661"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Titre super cool\",\n        \"description\": \"la description de dingue\",\n        \"type\": \"Back-end\",\n        \"author\": 1\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Le projet incroyable\",\n        \"description\": \"et sa description de fou\",\n        \"type\": \"Front-end\",\n        \"author\": 3\n    },\n    {\n        \"id\": 3,\n        \"title\": \"Du projet pour avoir matière de test\",\n        \"description\": \"Le titre est déjà bien long donc la description l'est un peu plus encore\",\n        \"type\": \"iOS\",\n        \"author\": 1\n    },\n    {\n        \"id\": 5,\n        \"title\": \"Le projet du singe viandu\",\n        \"description\": \"Un grand projet pour remplir la ligne de description\",\n        \"type\": \"Android\",\n        \"author\": 3\n    },\n    {\n        \"id\": 29,\n        \"title\": \"Un projet pour tous les réunir\",\n        \"description\": \"avec encore sa description cool\",\n        \"type\": \"Back-end\",\n        \"author\": 1\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Créer un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						""
+					]
+				},
+				"description": "Créer un projet \nVous devez être authentifié\nRenvoie un code HTTP 201 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Création nouveau projet",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Titre projet documentation\",\r\n    \"description\":\"Une description pour la doc\" ,\r\n    \"type\": \"Back-end\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 20:12:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "119"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 34,\n    \"title\": \"Titre projet documentation\",\n    \"description\": \"Une description pour la doc\",\n    \"type\": \"Back-end\",\n    \"author\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "Récupérer les détails d'un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						""
+					]
+				},
+				"description": "Récupérer les détails d'un projet via son id\nVous devez être authentifié \nVous devez être contributeur du projet\nRenvoi un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Détails projet 3",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 20:36:11 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "171"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"title\": \"Du projet pour avoir matière de test\",\n    \"description\": \"Le titre est déjà bien long donc la description l'est un peu plus encore\",\n    \"type\": \"iOS\",\n    \"author\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "Mettre à jour un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						""
+					]
+				},
+				"description": "Mettre à jour un projet\nVous devez être authentifié \nVous devez être créateur du projet\nRenvoie un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Mise à jour projet 3",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Du projet modifié pour avoir matière de test\",\r\n    \"description\": \"Le titre est déjà plus court\",\r\n    \"type\": \"Android\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 20:41:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "140"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"title\": \"Du projet modifié pour avoir matière de test\",\n    \"description\": \"Le titre est déjà plus court\",\n    \"type\": \"Android\",\n    \"author\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "Supprimer un projet et ses problèmes ",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						""
+					]
+				},
+				"description": "Supprimer un projet et ses problèmes \nVous devez être authentifié \nVous devez être créateur du projet\nRenvoie un code HTTP 204 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Suppression projet 3",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 22:13:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Récupérer les contributeurs d'un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"users",
+						""
+					]
+				},
+				"description": "Récupérer les contributeurs d'un projet\nVous devez être authentifié \nVous devez être contributeur du projet\nRenvoie un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Récupération des contributeurs du projet 29",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/users/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"users",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 22:18:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "141"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"project\": 29,\n        \"user\": 1,\n        \"permissions\": \"Créateur\",\n        \"role\": \"Responsable\"\n    },\n    {\n        \"project\": 29,\n        \"user\": 5,\n        \"permissions\": \"Contributeur\",\n        \"role\": \"Larbin\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Ajouter un contributeur à un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"users",
+						""
+					]
+				},
+				"description": "Ajouter un contributeur à un projet\nVous devez être authentifié \nVous devez être créateur du projet\nRenvoie un code HTTP 201 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Ajout d'un contributeur au projet 29",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"3\",\r\n    \"permissions\": \"Contributeur\",\r\n    \"role\": \"Le bosseur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/users/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"users",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 22:25:17 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"project\": 29,\n    \"user\": 3,\n    \"permissions\": \"Contributeur\",\n    \"role\": \"Le bosseur\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Supprimer un contributeur d'un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"users",
+						""
+					]
+				},
+				"description": "Supprimer un contributeur d'un projet\nVous devez être authentifié \nVous devez être créateur du projet\nRenvoie un code HTTP 204 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Suppression d'un contributeur du projet 29",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/users/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"users",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 22:31:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Récupérer la liste des problèmes d'un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/issues/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"issues",
+						""
+					]
+				},
+				"description": "Récupérer la liste des problèmes d'un projet\nVous devez être authentifié \nVous devez être contributeur du projet\nRenvoie un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Problèmes du projet 29",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/issues/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"issues",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 22:38:07 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "461"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 6,\n        \"title\": \"Le problème du projet 29\",\n        \"description\": \"Un problème facile à résoudre\",\n        \"tag\": \"BUG\",\n        \"priority\": \"MOYENNE\",\n        \"project\": 29,\n        \"status\": \"En cours\",\n        \"author\": 1,\n        \"assignee\": 5,\n        \"created_time\": \"2021-12-21T23:36:33.633879+01:00\"\n    },\n    {\n        \"id\": 7,\n        \"title\": \"Urgent\",\n        \"description\": \"Il faut urgemment écrire cette description\",\n        \"tag\": \"TACHE\",\n        \"priority\": \"ELEVEE\",\n        \"project\": 29,\n        \"status\": \"A faire\",\n        \"author\": 1,\n        \"assignee\": 1,\n        \"created_time\": \"2021-12-21T23:37:44.881830+01:00\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Créer un problème dans un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/issues/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"issues",
+						""
+					]
+				},
+				"description": "Créer un problème dans un projet\nVous devez être authentifié \nVous devez être contributeur du projet\nRenvoie un code HTTP 201 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Création d'un problème dans le projet 29",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Le titre que l'on va bientôt supprimer\",\r\n    \"description\": \"la description fantôme\",\r\n    \"tag\": \"AMELIORATION\",\r\n    \"priority\": \"FAIBLE\",\r\n    \"status\": \"En cours\",\r\n    \"assignee\": \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/issues/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"issues",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 22:46:08 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "246"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 8,\n    \"title\": \"Le titre que l'on va bientôt supprimer\",\n    \"description\": \"la description fantôme\",\n    \"tag\": \"AMELIORATION\",\n    \"priority\": \"FAIBLE\",\n    \"project\": 29,\n    \"status\": \"En cours\",\n    \"author\": 1,\n    \"assignee\": 3,\n    \"created_time\": \"2021-12-21T23:46:07.994651+01:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Mettre à jour un problème dans un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/issues/{{id}}/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"issues",
+						"{{id}}",
+						""
+					]
+				},
+				"description": "Mettre à jour un problème dans un projet\nVous devez être authentifié \nVous devez être contributeur du projet\nVous devez être l'auteur du problème\nRenvoie un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Mise à jour d'un problème dans le projet 29",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Le titre que l'on a modifié\",\r\n    \"description\": \"la description fantôme boosté\",\r\n    \"tag\": \"AMELIORATION\",\r\n    \"priority\": \"FAIBLE\",\r\n    \"status\": \"Terminé\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/issues/8/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"issues",
+								"8",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 22:52:24 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "243"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 8,\n    \"title\": \"Le titre que l'on a modifié\",\n    \"description\": \"la description fantôme boosté\",\n    \"tag\": \"AMELIORATION\",\n    \"priority\": \"FAIBLE\",\n    \"project\": 29,\n    \"status\": \"Terminé\",\n    \"author\": 1,\n    \"assignee\": 3,\n    \"created_time\": \"2021-12-21T23:52:24.599869+01:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Supprimer un problème dans un projet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/issues/{{id}}/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"issues",
+						"{{id}}",
+						""
+					]
+				},
+				"description": "Supprimer un problème dans un projet\nVous devez être authentifié \nVous devez être contributeur du projet\nVous devez être l'auteur du problème\nRenvoie un code HTTP 204 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Suppression d'un problème dans le projet 29",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/issues/8/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"issues",
+								"8",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 22:56:47 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Récupérer la liste des commentaires liés à un problème",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/issues/{{id}}/comments/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"issues",
+						"{{id}}",
+						"comments",
+						""
+					]
+				},
+				"description": "Récupérer la liste des commentaires liés à un problème\nVous devez être authentifié \nVous devez être contributeur du projet\nRenvoie un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Récupération de la liste des commentaires lié au problème 6 du projet 29",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/issues/6/comments/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"issues",
+								"6",
+								"comments",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 23:06:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "388"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 11,\n        \"description\": \"Un commentaire incroyable\",\n        \"author\": 1,\n        \"issue\": 6,\n        \"created_time\": \"2021-12-22T00:04:11.758611+01:00\"\n    },\n    {\n        \"id\": 12,\n        \"description\": \"Un commentaire pas super mais constructif\",\n        \"author\": 1,\n        \"issue\": 6,\n        \"created_time\": \"2021-12-22T00:04:31.117916+01:00\"\n    },\n    {\n        \"id\": 13,\n        \"description\": \"Un commentaire trop bizarre\",\n        \"author\": 1,\n        \"issue\": 6,\n        \"created_time\": \"2021-12-22T00:05:05.490954+01:00\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Créer un commentaire sur un problème",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/issues/{{id}}/comments/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"issues",
+						"{{id}}",
+						"comments",
+						""
+					]
+				},
+				"description": "Créer un commentaire sur un problème\nVous devez être authentifié \nVous devez être contributeur du projet\nRenvoie un code HTTP 201 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Création d'un commentaire sur le problème 6 du projet 29",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Le commentaire à modifier\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/issues/6/comments/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"issues",
+								"6",
+								"comments",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 23:10:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "123"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 14,\n    \"description\": \"Le commentaire à modifier\",\n    \"author\": 1,\n    \"issue\": 6,\n    \"created_time\": \"2021-12-22T00:10:36.302316+01:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Récupérer un commentaire",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/issues/{{id}}/comments/{{id}}",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"issues",
+						"{{id}}",
+						"comments",
+						"{{id}}"
+					]
+				},
+				"description": "Récupérer un commentaire\nVous devez être authentifié \nVous devez être contributeur du projet\nRenvoie un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Récupération du commentaire 14 du problème 6 du projet 29",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/issues/6/comments/14/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"issues",
+								"6",
+								"comments",
+								"14",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 23:24:00 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "136"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 14,\n    \"description\": \"Le commentaire modifié et à supprimer\",\n    \"author\": 1,\n    \"issue\": 6,\n    \"created_time\": \"2021-12-22T00:16:15.917548+01:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Modifier un commentaire",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/issues/{{id}}/comments/{{id}}",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"issues",
+						"{{id}}",
+						"comments",
+						"{{id}}"
+					]
+				},
+				"description": "Modifier un commentaire\nVous devez être authentifié \nVous devez être contributeur du projet\nVous devez être l'auteur du commentaire\nRenvoie un code HTTP 200 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Modification du commentaire 14 du problème 6 du projet 29",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Le commentaire modifié et à supprimer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/issues/6/comments/14/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"issues",
+								"6",
+								"comments",
+								"14",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 23:16:15 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "136"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 14,\n    \"description\": \"Le commentaire modifié et à supprimer\",\n    \"author\": 1,\n    \"issue\": 6,\n    \"created_time\": \"2021-12-22T00:16:15.917548+01:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Supprimer un commentaire",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQwMjg0NTYzLCJpYXQiOjE2NDAxMTE3NjMsImp0aSI6ImM3ZTg1N2Q5Y2FkYzQyMzFiMmE3MjU1ZjhhNGZjNmZkIiwidXNlcl9pZCI6MX0.jD70Ip2-uE0hkvRF0fm_k-Spjixn-C3HkqasVjW-ksw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/projects/{{id}}/issues/{{id}}/comments/{{id}}",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"projects",
+						"{{id}}",
+						"issues",
+						"{{id}}",
+						"comments",
+						"{{id}}"
+					]
+				},
+				"description": "Supprimer un commentaire\nVous devez être authentifié \nVous devez être contributeur du projet\nVous devez être l'auteur du commentaire\nRenvoie un code HTTP 204 en cas de succès"
+			},
+			"response": [
+				{
+					"name": "Suppression du commentaire 14 du problème 6 du projet 29",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/projects/29/issues/6/comments/14/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"projects",
+								"29",
+								"issues",
+								"6",
+								"comments",
+								"14",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Dec 2021 23:26:59 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
